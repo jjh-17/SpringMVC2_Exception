@@ -1,4 +1,5 @@
-[스프링 부트 제공 오류 페이지]
+[BasicErrorController]
+-스프링 부트 제공 오류 페이지 컨트롤러
 -WebServerCustomizer, ErrorPage, ErrorPageController 자동화
 
 [뷰 선택 우선순위]
