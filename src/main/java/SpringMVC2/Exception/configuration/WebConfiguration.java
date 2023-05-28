@@ -2,15 +2,20 @@ package SpringMVC2.Exception.configuration;
 
 import SpringMVC2.Exception.filter.LogFilter;
 import SpringMVC2.Exception.interceptor.LogInterceptor;
+import SpringMVC2.Exception.resolver.MyHandlerExceptionResolver;
+import SpringMVC2.Exception.resolver.UserHandlerExceptionResolver;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@Configuration
+import java.util.List;
+
+@Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
     //필터 등록
@@ -28,12 +33,19 @@ public class WebConfiguration implements WebMvcConfigurer {
         return filterRegistrationBean;
     }
 
-    //인터셉터 등록
+//    //인터셉터 등록
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LogInterceptor())
+//                .order(1)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/css/**", "*.ico", "/error", "/error-page/**");
+//    }
+
+    //MyHandlerExceptionResolver 등록
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogInterceptor())
-                .order(1)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/css/**", "*.ico", "/error", "/error-page/**");
+    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+        resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
     }
 }
