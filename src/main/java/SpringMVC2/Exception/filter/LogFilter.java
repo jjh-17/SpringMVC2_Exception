@@ -3,19 +3,8 @@ package SpringMVC2.Exception.filter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.util.UUID;
-
-
-/*
-[예외 발생, 오류 페이지 요청 흐름]
-1. WAS(예외 전달받음) <== 필터 <== 서블릿 <== 인터셉터 <== 컨트로러(예외 발생)
-2. WAS(에러 페이지 요청) ==> 필터 ==> 서블릿 ==> 인터셉터 ==> 컨트롤러 ==> View
-
-필터, 인터셉터가 2번 호출되어 비효율적
-    ==> 클라이언트 요청, 내부 페이지 요청(서버) 구분을 위한 DispatcherType
- */
 
 @Slf4j
 public class LogFilter implements Filter {

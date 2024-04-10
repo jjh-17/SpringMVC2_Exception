@@ -23,10 +23,6 @@ public class ServletExceptionController {
         throw new RuntimeException("서블릿 예외 발생");
     }
 
-    /*
-    [sendError 흐름]
-    WAS(sendError 호출 기록 확인) <== 필터 <== 서블릿 <== 인터셉터 <== 컨트롤러(sendError)
-     */
     @GetMapping("/servlet/error-404")
     public void servlet_error404(HttpServletResponse response) throws IOException {
         log.info("예외 404 발생");
