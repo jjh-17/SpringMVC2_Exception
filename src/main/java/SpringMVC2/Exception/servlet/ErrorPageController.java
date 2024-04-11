@@ -29,6 +29,13 @@ public class ErrorPageController {
         log.info("dispatchType={}", request.getDispatcherType());
     }
 
+    @RequestMapping("/error-page/4xx")
+    public String errorPage4xx(HttpServletRequest request, HttpServletResponse response) {
+        log.info("errorPage 4xx");
+        printErrorInfo(request);
+        return "error-page/4xx";
+    }
+
     @RequestMapping("/error-page/404")
     public String errorPage404(HttpServletRequest request, HttpServletResponse response) {
         log.info("errorPage 404");
@@ -48,18 +55,18 @@ public class ErrorPageController {
     오류 발생 시 JSON 객체 대신 오류 페이지 HTML 반환
         ==> produces를 이용하여 클라이언트 요청 HTTP Header의 Accept 값이 application/json일 경우 해당 메서드 호출
     */
-    @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> errorPage500Api(
-            HttpServletRequest request, HttpServletResponse response) {
-        log.info("API errorPage 500");
-
-        HashMap<String, Object> result = new HashMap<>();
-        Exception ex = (Exception) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
-        result.put("status", request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
-        result.put("message", ex.getMessage());
-
-        Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
-        return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode));
-    }
+//    @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Map<String, Object>> errorPage500Api(
+//            HttpServletRequest request, HttpServletResponse response) {
+//        log.info("API errorPage 500");
+//
+//        HashMap<String, Object> result = new HashMap<>();
+//        Exception ex = (Exception) request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
+//        result.put("status", request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
+//        result.put("message", ex.getMessage());
+//
+//        Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+//
+//        return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode));
+//    }
 }
