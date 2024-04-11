@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
     ==> 특정 컨트롤러 지정
  */
 @Slf4j
-@RestControllerAdvice
+//@RestControllerAdvice
 public class ExControllerAdvice {
 
     //최상위 오류 처리
