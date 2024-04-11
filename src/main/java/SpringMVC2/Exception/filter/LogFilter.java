@@ -28,14 +28,16 @@ public class LogFilter implements Filter {
         String uuid = UUID.randomUUID().toString();
 
         try{
-            log.info("로그 필터 요청 [{}][{}][{}]", uuid, requestURI, request.getDispatcherType());
+            // 요청의 DispatcherType 포함
+            log.info("로그 필터 요청 [{}][{}][{}]", uuid, request.getDispatcherType(), requestURI);
 
             //다음 필터 혹은 서블릿 호출
             chain.doFilter(request, response);
         } catch (Exception e){
+            log.error("에러 메시지 출력 : " + e.getMessage());
             throw e;
         } finally {
-            log.info("로그 필터 응답 [{}][{}][{}]", uuid, requestURI, request.getDispatcherType());
+            log.info("로그 필터 응답 [{}][{}][{}]", uuid, request.getDispatcherType(), requestURI);
         }
 
     }

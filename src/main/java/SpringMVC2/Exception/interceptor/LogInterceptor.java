@@ -26,12 +26,6 @@ public class LogInterceptor implements HandlerInterceptor {
                 ==> 인터셉터는 싱글톤처럼 사용되므로 멤버변수 대신 request에 담는다
          */
         request.setAttribute(LOG_ID, uuid);
-
-        //@RequestMapping: HandlerMethod
-        //정적 리소스: ResourceHttpRequestHandler
-        if (handler instanceof HandlerMethod) {
-            HandlerMethod hm = (HandlerMethod) handler; //호출할 컨트롤러 메서드의 모든 정보를 포함
-        }
         log.info("로그 Interceptor 요청 [{}], [{}], [{}], [{}]", request.getDispatcherType(), uuid, requestURI, handler);
         return true;
     }
