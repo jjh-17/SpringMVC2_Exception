@@ -18,34 +18,34 @@ import java.util.List;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-    //필터 등록
-    //@Bean
-    public FilterRegistrationBean logFilter() {
-        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
-
-        filterRegistrationBean.setFilter(new LogFilter());
-        filterRegistrationBean.setOrder(1);
-        filterRegistrationBean.addUrlPatterns("/*");
-
-        //REQUEST, ERROR에서만 필터 호출
-        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
-
-        return filterRegistrationBean;
-    }
-
-//    //인터셉터 등록
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LogInterceptor())
-//                .order(1)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/css/**", "*.ico", "/error", "/error-page/**");
+//    //필터 등록
+//    @Bean
+//    public FilterRegistrationBean logFilter() {
+//        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+//
+//        filterRegistrationBean.setFilter(new LogFilter());
+//        filterRegistrationBean.setOrder(1);
+//        filterRegistrationBean.addUrlPatterns("/*");
+//
+//        //REQUEST, ERROR에서만 필터 호출
+//        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
+//
+//        return filterRegistrationBean;
 //    }
 
-    //MyHandlerExceptionResolver 등록
+    //인터셉터 등록
     @Override
-    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-        resolvers.add(new MyHandlerExceptionResolver());
-        resolvers.add(new UserHandlerExceptionResolver());
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LogInterceptor())
+                .order(1)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/css/**", "*.ico", "/error", "/error-page/**");
     }
+
+//    //MyHandlerExceptionResolver 등록
+//    @Override
+//    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+//        resolvers.add(new MyHandlerExceptionResolver());
+//        resolvers.add(new UserHandlerExceptionResolver());
+//    }
 }
