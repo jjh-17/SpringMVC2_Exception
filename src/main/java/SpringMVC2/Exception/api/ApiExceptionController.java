@@ -32,12 +32,13 @@ public class ApiExceptionController {
     // exception 설정
     @GetMapping("/api/members/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
+
         switch (id) {
             case "ex" -> throw new RuntimeException("잘못된 사용자");
             case "bad" -> throw new IllegalArgumentException("잘못된 입력 값");
             case "user-ex" -> throw new UserException("사용자 오류");
         }
-        
+
         return new MemberDto(id, "hello " + id);
     }
 

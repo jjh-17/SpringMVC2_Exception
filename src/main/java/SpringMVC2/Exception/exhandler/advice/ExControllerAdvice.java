@@ -43,7 +43,6 @@ public class ExControllerAdvice {
         return new ErrorResult("EX", "내부 오류");
     }
 
-
     /*
     IllegalArgumentException에 대한 예외 처리
 
@@ -60,7 +59,6 @@ public class ExControllerAdvice {
         log.error("[exceptionHandler] ex", e);
         return new ErrorResult("BAD", e.getMessage());
     }
-
 
     //사용자 예외처리 클래스 사용
     //@ExceptionHandler가 아닌, 메서드 파라미터에 예외 지정 가능

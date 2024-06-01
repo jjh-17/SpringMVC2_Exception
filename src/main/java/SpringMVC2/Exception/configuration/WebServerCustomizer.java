@@ -1,4 +1,4 @@
-package SpringMVC2.Exception;
+package SpringMVC2.Exception.configuration;
 
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.ErrorPage;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 WAS가 예외를 전달 받음 ==> 오류 페이지 정보 확인 ==> 아래에서 지정된 경로를 오류 페이지로써 요청
 이때, 웹 브라우저(클라이언트)는 서버 내부에서 이러한 일이 발생함을 모름
  */
-@Component
+//@Component
 public class WebServerCustomizer implements WebServerFactoryCustomizer<ConfigurableWebServerFactory> {
 
     @Override
