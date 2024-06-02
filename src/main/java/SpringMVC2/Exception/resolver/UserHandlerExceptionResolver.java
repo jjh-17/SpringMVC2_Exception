@@ -18,11 +18,8 @@ public class UserHandlerExceptionResolver implements HandlerExceptionResolver {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,
-                                         Object handler, Exception ex) {
-
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         try {
-
             //사용자 정의 ModelAndView 설정
             if (ex instanceof UserException) {
                 log.info("UserException resolver to 400");
@@ -33,6 +30,8 @@ public class UserHandlerExceptionResolver implements HandlerExceptionResolver {
                     HashMap<String, Object> map = new HashMap<>();
                     map.put("ex", ex.getClass());
                     map.put("message", ex.getMessage());
+                    
+                    // HashMap을 String 문자열로 변환
                     String result = objectMapper.writeValueAsString(map);
 
                     response.setContentType("application/json");

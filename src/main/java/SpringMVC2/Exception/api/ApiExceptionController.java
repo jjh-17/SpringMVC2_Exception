@@ -42,20 +42,20 @@ public class ApiExceptionController {
         return new MemberDto(id, "hello " + id);
     }
 
-    //스프링 제공 ResponseStatusExceptionResolver1
+    // 스프링 제공 ResponseStatusExceptionResolver1
     @GetMapping("/api/response-status-ex1")
     public String responseStatusEx1() {
         throw new BadRequestException();
     }
 
-    //스프링 제공 ResponseStatusExceptionResolver2
+    // 스프링 제공 ResponseStatusExceptionResolver2
     @GetMapping("/api/response-status-ex2")
     public String responseStatusEx2() {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad",
                 new IllegalArgumentException());
     }
 
-    //스프링 제공 DefaultHandlerExceptionResolver
+    // 스프링 제공 DefaultHandlerExceptionResolver
     @GetMapping("/api/default-handler-ex")
     public String defaultException(@RequestParam Integer data) {
         return "ok";

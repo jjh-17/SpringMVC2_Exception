@@ -43,9 +43,9 @@ public class WebConfiguration implements WebMvcConfigurer {
     }
 
     // ExceptionResolver 등록
-//    @Override
-//    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-//        resolvers.add(new MyHandlerExceptionResolver());
-//        resolvers.add(new UserHandlerExceptionResolver());
-//    }
+    @Override
+    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+        resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
+    }
 }
