@@ -35,13 +35,11 @@ public class ApiExceptionControllerV2 {
 
     //최상위 오류 처리
     //Exception을 상속한 자식예외 처리 이후, 부모인 Exception 처리 수행
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler
     public ErrorResult exHandler(Exception e) {
-        log.error("[exceptionHandler] ex", e);
+        log.error("INTERNAL_SERVER_ERROR 예외 감지");
         return new ErrorResult("EX", "내부 오류");
     }
-
 
     /*
     IllegalArgumentException에 대한 예외 처리
@@ -56,7 +54,7 @@ public class ApiExceptionControllerV2 {
     @ResponseStatus(HttpStatus.BAD_REQUEST) //상태 코드 지정 가능
     @ExceptionHandler(IllegalArgumentException.class) //정상 흐름처럼 보이게 한다
     public ErrorResult illegalExHandler(IllegalArgumentException e) {
-        log.error("[exceptionHandler] ex", e);
+        log.error("BAD_REQUEST 예외 감지");
         return new ErrorResult("BAD", e.getMessage());
     }
 
@@ -65,7 +63,7 @@ public class ApiExceptionControllerV2 {
     //@ExceptionHandler가 아닌, 메서드 파라미터에 예외 지정 가능
     @ExceptionHandler
     public ResponseEntity<ErrorResult> userExHandler(UserException e) {
-        log.error("[exceptionHandler] ex", e);
+        log.error("UserException 예외 감지");
         ErrorResult errorResult = new ErrorResult("USER-EX", e.getMessage());
         return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
     }
