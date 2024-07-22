@@ -35,6 +35,7 @@ public class ApiExceptionControllerV2 {
 
     //최상위 오류 처리
     //Exception을 상속한 자식예외 처리 이후, 부모인 Exception 처리 수행
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler
     public ErrorResult exHandler(Exception e) {
         log.error("INTERNAL_SERVER_ERROR 예외 감지");
