@@ -22,17 +22,10 @@ public class ApiExceptionControllerV3 {
 
     @GetMapping("/api3/members/{id}")
     public MemberDto getMember(@PathVariable("id") String id) {
-        if (id.equals("ex")) {
-            throw new RuntimeException("잘못된 사용자");
-        }
-
-        if (id.equals("bad")) {
-            throw new IllegalArgumentException("잘못된 입력 값");
-        }
-
-        //UserException
-        if (id.equals("user-ex")) {
-            throw new UserException("사용자 오류");
+        switch (id) {
+            case "ex" -> throw new RuntimeException("컨트롤러 Advice - 잘못된 사용자");
+            case "bad" -> throw new IllegalArgumentException("컨트롤러 Advice - 잘못된 입력 값");
+            case "user-ex" -> throw new UserException("컨트롤러 Advice - 사용자 오류");
         }
 
         return new MemberDto(id, "hello " + id);
